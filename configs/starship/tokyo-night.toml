@@ -1,0 +1,88 @@
+# Configuración de Starship con tema Tokyo Night
+
+# Configuración general
+add_newline = true
+command_timeout = 750
+format = """
+$username$hostname$directory$git_branch$git_status
+$python$nodejs$rust$golang$docker
+$time$character"""
+
+# Módulo tiempo
+[time]
+disabled = false
+time_format = "%H:%M:%S"
+format = "[$time]($style) "
+style = "blue"
+
+# Módulo username
+[username]
+show_always = false
+format = "[$user]($style)@"
+style_user = "blue"
+
+# Módulo hostname
+[hostname]
+ssh_only = false
+format = "[$hostname]($style) "
+style = "blue"
+
+# Módulo directorio
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+format = "[$path]($style)[$read_only]($read_only_style) "
+style = "cyan"
+read_only = " 🔒"
+read_only_style = "red"
+
+# Módulo Git
+[git_branch]
+format = "[$symbol$branch]($style) "
+symbol = " "
+style = "purple"
+
+[git_status]
+format = '([$all_status$ahead_behind]($style) )'
+style = "green"
+ahead = "⇡ ${count}"
+behind = "⇣ ${count}"
+diverged = "⇕ ${ahead_count}⇣${behind_count}"
+conflicted = "=${count}"
+deleted = "✘${count}"
+modified = "!${count}"
+staged = "+${count}"
+renamed = "»${count}"
+untracked = "?${count}"
+
+# Módulos de lenguajes de programación
+[python]
+format = '[${symbol}${pyenv_prefix}(${version} )($$$virtualenv$$ )]($style)'
+style = "yellow"
+symbol = " "
+
+[nodejs]
+format = "[${symbol}${version}]($style) "
+style = "green"
+symbol = "⬢ "
+
+[rust]
+format = "[${symbol}${version}]($style) "
+style = "red"
+symbol = "🦀 "
+
+[golang]
+format = "[${symbol}${version}]($style) "
+style = "blue"
+symbol = "go "
+
+[docker_context]
+format = "[${symbol}${context}]($style) "
+style = "blue"
+symbol = "🐳 "
+
+# Módulo del carácter de prompt
+[character]
+success_symbol = "[❯](green)"
+error_symbol = "[❯](red)"
+vimcmd_symbol = "[❮](green)"

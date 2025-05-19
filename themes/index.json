@@ -1,0 +1,140 @@
+{
+  "themes": [
+    {
+      "id": "tokyo-night",
+      "name": "Tokyo Night",
+      "description": "Un tema oscuro inspirado en las luces nocturnas de Tokyo",
+      "author": "MintDev Team",
+      "colors": {
+        "primary": "#7aa2f7",
+        "secondary": "#bb9af7",
+        "background": "#1a1b26",
+        "foreground": "#c0caf5",
+        "accent1": "#f7768e",
+        "accent2": "#9ece6a",
+        "accent3": "#e0af68"
+      },
+      "wallpaper": "themes/tokyo-night/background.jpg",
+      "compatible_apps": ["alacritty", "vscode", "zsh", "tmux", "conky", "starship"]
+    },
+    {
+      "id": "nord",
+      "name": "Nord",
+      "description": "Un tema ártico, frío y minimalista con tonos azules",
+      "author": "Arctic Ice Studio",
+      "colors": {
+        "primary": "#88c0d0",
+        "secondary": "#81a1c1",
+        "background": "#2e3440",
+        "foreground": "#d8dee9",
+        "accent1": "#bf616a",
+        "accent2": "#a3be8c",
+        "accent3": "#ebcb8b"
+      },
+      "wallpaper": "themes/nord/background.jpg",
+      "compatible_apps": ["alacritty", "vscode", "zsh", "tmux", "conky", "starship"]
+    },
+    {
+      "id": "gruvbox",
+      "name": "Gruvbox",
+      "description": "Un tema retro con colores cálidos y terrosos",
+      "author": "morhetz",
+      "colors": {
+        "primary": "#fe8019",
+        "secondary": "#d3869b",
+        "background": "#282828",
+        "foreground": "#ebdbb2",
+        "accent1": "#fb4934",
+        "accent2": "#b8bb26",
+        "accent3": "#fabd2f"
+      },
+      "wallpaper": "themes/gruvbox/background.jpg",
+      "compatible_apps": ["alacritty", "vscode", "zsh", "tmux", "conky", "starship"]
+    },
+    {
+      "id": "dracula",
+      "name": "Dracula",
+      "description": "Un tema oscuro con colores vibrantes inspirado en Drácula",
+      "author": "Zeno Rocha",
+      "colors": {
+        "primary": "#bd93f9",
+        "secondary": "#ff79c6",
+        "background": "#282a36",
+        "foreground": "#f8f8f2",
+        "accent1": "#ff5555",
+        "accent2": "#50fa7b",
+        "accent3": "#f1fa8c"
+      },
+      "wallpaper": "themes/dracula/background.jpg",
+      "compatible_apps": ["alacritty", "vscode", "zsh", "tmux", "conky", "starship"]
+    },
+    {
+      "id": "catppuccin",
+      "name": "Catppuccin",
+      "description": "Un tema pastel con colores suaves y cálidos",
+      "author": "Catppuccin Team",
+      "colors": {
+        "primary": "#89b4fa",
+        "secondary": "#cba6f7",
+        "background": "#1e1e2e",
+        "foreground": "#cdd6f4",
+        "accent1": "#f38ba8",
+        "accent2": "#a6e3a1",
+        "accent3": "#f9e2af"
+      },
+      "wallpaper": "themes/catppuccin/background.jpg",
+      "compatible_apps": ["alacritty", "vscode", "zsh", "tmux", "conky", "starship"]
+    },
+    {
+      "id": "everforest",
+      "name": "Everforest",
+      "description": "Un tema verde inspirado en los bosques con colores suaves",
+      "author": "sainnhe",
+      "colors": {
+        "primary": "#a7c080",
+        "secondary": "#d699b6",
+        "background": "#2d353b",
+        "foreground": "#d3c6aa",
+        "accent1": "#e67e80",
+        "accent2": "#83c092",
+        "accent3": "#dbbc7f"
+      },
+      "wallpaper": "themes/everforest/background.jpg",
+      "compatible_apps": ["alacritty", "vscode", "zsh", "tmux", "conky", "starship"]
+    },
+    {
+      "id": "kanagawa",
+      "name": "Kanagawa",
+      "description": "Un tema inspirado en la Gran Ola de Kanagawa",
+      "author": "rebelot",
+      "colors": {
+        "primary": "#7e9cd8",
+        "secondary": "#957fb8",
+        "background": "#1f1f28",
+        "foreground": "#dcd7ba",
+        "accent1": "#c34043",
+        "accent2": "#76946a",
+        "accent3": "#c0a36e"
+      },
+      "wallpaper": "themes/kanagawa/background.jpg",
+      "compatible_apps": ["alacritty", "vscode", "zsh", "tmux", "conky", "starship"]
+    },
+    {
+      "id": "rose-pine",
+      "name": "Rosé Pine",
+      "description": "Un tema elegante y minimalista con tonos rosados y morados",
+      "author": "Rose Pine Team",
+      "colors": {
+        "primary": "#9ccfd8",
+        "secondary": "#c4a7e7",
+        "background": "#191724",
+        "foreground": "#e0def4",
+        "accent1": "#eb6f92",
+        "accent2": "#31748f",
+        "accent3": "#f6c177"
+      },
+      "wallpaper": "themes/rose-pine/background.jpg",
+      "compatible_apps": ["alacritty", "vscode", "zsh", "tmux", "conky", "starship"]
+    }
+  ]
+}

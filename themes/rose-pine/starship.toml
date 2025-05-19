@@ -1,0 +1,15 @@
+[aws]
+style = "bold #31748f"
+
+[character]
+success_symbol = "[❯](bold #ebbcba)"
+error_symbol = "[❯](bold #eb6f92)"
+
+[directory]
+style = "bold #9ccfd8"
+
+[git_branch]
+style = "bold #c4a7e7"
+
+[git_status]
+style = "bold #f6c177"
