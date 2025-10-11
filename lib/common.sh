@@ -180,6 +180,34 @@ check_sudo_permissions() {
     fi
 }
 
+# Variable global para rastrear el tiempo de la última actualización de apt
+APT_LAST_UPDATED_FILE="/tmp/mint-dev-setup-last-apt-update"
+UPDATE_INTERVAL=3600 # 1 hora en segundos
+
+# Función para ejecutar apt update si es necesario
+run_apt_update_if_needed() {
+    if [ ! -f "$APT_LAST_UPDATED_FILE" ] || \
+       (( $(date +%s) - $(cat "$APT_LAST_UPDATED_FILE") > UPDATE_INTERVAL )); then
+
+        print_message "blue" "Actualizando lista de paquetes (apt update)..."
+        log_message "INFO" "Ejecutando 'apt update'..."
+
+        if sudo apt update; then
+            log_message "INFO" "'apt update' completado exitosamente"
+            # Actualizar el timestamp solo si el update fue exitoso
+            date +%s > "$APT_LAST_UPDATED_FILE"
+        else
+            log_message "ERROR" "Falló 'apt update'"
+            print_message "red" "Error al actualizar la lista de paquetes. La instalación podría fallar."
+            # No actualizamos el timestamp para que lo intente la próxima vez
+            return 1
+        fi
+    else
+        log_message "INFO" "'apt update' no es necesario (ejecutado recientemente)"
+    fi
+    return 0
+}
+
 # Función para instalar un paquete si no está instalado
 install_package_if_needed() {
     local package=$1
@@ -187,6 +215,10 @@ install_package_if_needed() {
     if ! is_installed "$package"; then
         print_message "yellow" "Instalando $package..."
         log_message "INFO" "Instalando paquete: $package"
+
+        # Ejecutar apt update si es necesario
+        run_apt_update_if_needed
+
         sudo apt install -y "$package"
         if [ $? -eq 0 ]; then
             print_message "green" "✓ $package instalado correctamente"
