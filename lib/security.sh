@@ -45,7 +45,7 @@ secure_download() {
     log_message "INFO" "Iniciando descarga: $url -> $output_file"
     
     # Usar wget con opciones de seguridad
-    wget --https-only --secure-protocol=TLSv1_2 --no-check-certificate \
+    wget --https-only --secure-protocol=TLSv1_2 \
          -q --show-progress -O "$output_file" "$url"
     
     local status=$?
