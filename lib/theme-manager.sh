@@ -915,6 +915,14 @@ hex_to_rgb() {
     # Remove # if present
     hex=${hex#\#}
 
+    # Handle 3-digit hex codes by duplicating each digit
+    if [ ${#hex} -eq 3 ]; then
+        local r_char=${hex:0:1}
+        local g_char=${hex:1:1}
+        local b_char=${hex:2:1}
+        hex="$r_char$r_char$g_char$g_char$b_char$b_char"
+    fi
+
     # Check if the hex string has the correct length (6 characters)
     if [ ${#hex} -ne 6 ]; then
         log_message "ERROR" "Invalid hex color format: $1"
