@@ -137,7 +137,7 @@ check_environment() {
          if [[ "$continue_anyway" != "y" ]]; then
              print_message "red" "Aborting installation."
              exit 1
-         fi
+     fi
     else
          print_message "green" "✓ System version ($MINT_VERSION) is compatible or newer than $EXPECTED_VERSION."
          if type log_message &>/dev/null; then log_message "INFO" "System version ($MINT_VERSION) compatibility check passed."; fi
@@ -151,7 +151,7 @@ check_environment() {
         if [[ "$continue_anyway" != "y" ]]; then
             print_message "red" "Aborting installation."
             exit 1
-        fi
+    fi
     else
          print_message "green" "✓ Running on Cinnamon desktop environment."
          if type log_message &>/dev/null; then log_message "INFO" "Running on Cinnamon desktop environment."; fi
@@ -166,7 +166,7 @@ check_environment() {
          if [[ "$continue_space" != "y" ]]; then
              print_message "red" "Aborting installation."
              exit 1
-         fi
+     fi
     else
          print_message "green" "✓ Sufficient disk space available."
          if type log_message &>/dev/null; then log_message "INFO" "Sufficient disk space available."; fi
@@ -210,8 +210,11 @@ select_theme() {
                 print_message "red" "Fatal Error: No themes available even with fallback. Cannot continue."
                 if type log_message &>/dev/null; then log_message "FATAL" "No themes available even with fallback."; fi
                 exit 1
-             fi
-        fi
+    fi
+    fi
+
+# Ensure .local/bin is in PATH for the current session
+export PATH="$HOME/.local/bin:$PATH"
 
         echo "$themes_list" | nl -w2 -s') '
 
@@ -223,7 +226,7 @@ select_theme() {
         # Validar la selección
         if [[ ! "$theme_selection" =~ ^[0-9]+$ ]] || [ "$theme_selection" -lt 1 ] || [ "$theme_selection" -gt "$theme_count" ]; then
             theme_selection=1
-        fi
+    fi
 
         # Obtener el ID del tema seleccionado
         selected_theme_line=$(echo "$themes_list" | sed -n "${theme_selection}p")
@@ -233,7 +236,7 @@ select_theme() {
         print_message "cyan" "$theme_display_name theme selected (ID: $THEME_NAME)"
         if type log_message &>/dev/null; then
             log_message "INFO" "Theme selected: $THEME_NAME ($theme_display_name)"
-        fi
+    fi
     else
         # Fallback si no tenemos el sistema de gestión de temas
         print_message "yellow" "Theme manager module not loaded. Using hardcoded themes."
@@ -357,6 +360,9 @@ show_interactive_menu() {
     export INSTALL_VM_TOOLS=${install_vm}
 }
 
+# Ensure .local/bin is in PATH for the current session
+export PATH="$HOME/.local/bin:$PATH"
+
 # Function to install a component using its dedicated script (Uses idempotence.sh functions)
 install_component() {
     local component=$1
@@ -371,7 +377,7 @@ install_component() {
             print_message "yellow" "Component $component is already installed, skipping"
             if type log_message &>/dev/null; then log_message "INFO" "Component $component is already installed, skipping"; fi
             return 0
-        fi
+    fi
 
         # Ejecutar el script de instalación
         bash "$script_path"
@@ -384,7 +390,7 @@ install_component() {
             if type log_message &>/dev/null; then log_message "INFO" "Component $component marked as installed"; fi
         else
              if type log_message &>/dev/null; then log_message "WARNING" "mark_component_installed function not available."; fi
-        fi
+    fi
     else
         print_message "yellow" "Installation script for $component not found: $script_path"
         if type log_message &>/dev/null; then log_message "WARNING" "Installation script not found: $script_path"; fi
@@ -541,6 +547,9 @@ fi
 check_success "Shell aliases and configuration"
 
 
+# Install MintDev Core CLI requirements
+install_component "gum"
+
 # Install components based on user selection (Uses install_component)
 # Terminal tools
 if [[ "$INSTALL_TERMINAL_TOOLS" == [Yy]* ]]; then
@@ -551,15 +560,17 @@ if [[ "$INSTALL_TERMINAL_TOOLS" == [Yy]* ]]; then
     install_component "micro"
     install_component "bat"
     install_component "ranger"
-    install_component "neofetch" # Moved neofetch installation here
+    install_component "btop"
+    install_component "fastfetch" # Replaced neofetch
 fi
 
 # Development tools
 if [[ "$INSTALL_DEV_TOOLS" == [Yy]* ]]; then
-    install_component "python"
-    install_component "nodejs"
+    install_component "mise"
     install_component "docker"
     install_component "github-cli"
+    install_component "lazygit"
+    install_component "lazydocker"
 
     # Install Rust if not already installed for Zellij (Uses command_exists from common.sh)
     if ! command_exists cargo; then
@@ -576,7 +587,7 @@ if [[ "$INSTALL_DEV_TOOLS" == [Yy]* ]]; then
             print_message "yellow" "Secure download function not available, using curl for Rustup..."
             if type log_message &>/dev/null; then log_message "WARNING" "secure_download function not available for Rustup, using curl."; fi
             curl https://sh.rustup.rs -sSf | sh -s -- -y
-        fi
+    fi
 
         source "$HOME/.cargo/env"
         # check_success is now sourced from common.sh
@@ -634,12 +645,12 @@ keybinds clear-defaults=true {
     }
 }
 EOF
-            fi
+        fi
             check_success "Zellij configuration"
         else
             print_message "red" "Error: cargo command not found, cannot install Zellij."
             if type log_message &>/dev/null; then log_message "ERROR" "cargo command not found, cannot install Zellij."; fi
-        fi
+    fi
     else
         print_message "yellow" "Zellij is already installed"
         if type log_message &>/dev/null; then log_message "INFO" "Zellij is already installed, skipping."; fi
@@ -830,6 +841,12 @@ print_message "blue" "======================================================"
 print_message "cyan" "This script was inspired by the Omakub project (https://omakub.org)."
 print_message "cyan" "Visit https://github.com/basecamp/omakub for the original project."
 print_message "blue" "======================================================"
+
+# Install MintDev CLI globally
+print_message "blue" "===== INSTALLING MINTDEV CLI ====="
+mkdir -p "$HOME/.local/bin"
+ln -sf "$SCRIPT_DIR/bin/mintdev" "$HOME/.local/bin/mintdev"
+print_message "green" "MintDev CLI installed to ~/.local/bin/mintdev"
 
 # Clean up (Uses ensure_dir - implicitly for parent of TEMP_DIR)
 rm -rf "$TEMP_DIR"
