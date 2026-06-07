@@ -790,6 +790,12 @@ apply_theme_system_wide() {
 
     print_message "blue" "Aplicando tema $theme_id a todo el sistema..."
 
+    # Source and apply Cinnamon theme
+    if [ -f "$SCRIPT_DIR/lib/cinnamon-theme.sh" ]; then
+        source "$SCRIPT_DIR/lib/cinnamon-theme.sh"
+        apply_cinnamon_theme "$theme_id"
+    fi
+
     # Aplicar tema a cada componente compatible
     local components=("alacritty" "starship" "vscode" "tmux" "conky")
     local success_count=0

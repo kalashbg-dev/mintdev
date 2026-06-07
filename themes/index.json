@@ -135,6 +135,57 @@
       },
       "wallpaper": "themes/rose-pine/background.jpg",
       "compatible_apps": ["alacritty", "vscode", "zsh", "tmux", "conky", "starship"]
+    },
+    {
+      "id": "osaka-jade",
+      "name": "Osaka Jade",
+      "description": "Un tema verde oscuro y elegante",
+      "author": "Omakub Team",
+      "colors": {
+        "primary": "#4a9c6d",
+        "secondary": "#7eb997",
+        "background": "#141b18",
+        "foreground": "#d4e5db",
+        "accent1": "#a8cda9",
+        "accent2": "#63ab81",
+        "accent3": "#9fd2a7"
+      },
+      "wallpaper": "themes/osaka-jade/background.jpg",
+      "compatible_apps": ["alacritty", "vscode", "zsh", "tmux", "conky", "starship"]
+    },
+    {
+      "id": "matte-black",
+      "name": "Matte Black",
+      "description": "Un tema ultra oscuro y limpio",
+      "author": "Omakub Team",
+      "colors": {
+        "primary": "#888888",
+        "secondary": "#555555",
+        "background": "#000000",
+        "foreground": "#ffffff",
+        "accent1": "#aaaaaa",
+        "accent2": "#cccccc",
+        "accent3": "#444444"
+      },
+      "wallpaper": "themes/matte-black/background.jpg",
+      "compatible_apps": ["alacritty", "vscode", "zsh", "tmux", "conky", "starship"]
+    },
+    {
+      "id": "ristretto",
+      "name": "Ristretto",
+      "description": "Un tema oscuro inspirado en café",
+      "author": "Omakub Team",
+      "colors": {
+        "primary": "#d19a66",
+        "secondary": "#e5c07b",
+        "background": "#211c1c",
+        "foreground": "#dcdfe4",
+        "accent1": "#e06c75",
+        "accent2": "#98c379",
+        "accent3": "#56b6c2"
+      },
+      "wallpaper": "themes/ristretto/background.jpg",
+      "compatible_apps": ["alacritty", "vscode", "zsh", "tmux", "conky", "starship"]
     }
   ]
 }

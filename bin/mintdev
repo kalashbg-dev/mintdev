@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Export path if not set
+if [ -z "$MINTDEV_PATH" ]; then
+    export MINTDEV_PATH="$HOME/.local/share/mint-dev-setup"
+fi
+
+# Fallback to current directory if running locally
+if [ ! -d "$MINTDEV_PATH" ]; then
+    export MINTDEV_PATH="$(cd "$(dirname "$(readlink -f "$0" || echo "$0")")/.." && pwd)"
+fi
+
+source "$MINTDEV_PATH/bin/mintdev-sub/header.sh"
+source "$MINTDEV_PATH/bin/mintdev-sub/menu.sh"
